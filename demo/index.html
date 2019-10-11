@@ -8,7 +8,7 @@
     <script src="../index.js"></script>
     <style>
         body{
-            background-color: #333;
+            /* background-color: #333; */
         }
         body>div{
             margin:10px;
@@ -23,8 +23,13 @@
     <div id="test3"></div>
     <div id="test4"></div>
     <div id="test5"></div>
+    <div id="test6"></div>
     <script>
         var images=[
+            'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2604881976,4272289404&fm=26&gp=0.jpg',
+            'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3276179142,1686381254&fm=26&gp=0.jpg',
+            'http://img1.imgtn.bdimg.com/it/u=2112694706,1016932601&fm=26&gp=0.jpg',
+            'http://img1.imgtn.bdimg.com/it/u=1905111491,2361444866&fm=26&gp=0.jpg',
             'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2604881976,4272289404&fm=26&gp=0.jpg',
             'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3276179142,1686381254&fm=26&gp=0.jpg',
             'http://img1.imgtn.bdimg.com/it/u=2112694706,1016932601&fm=26&gp=0.jpg',
@@ -32,19 +37,33 @@
             'http://img2.imgtn.bdimg.com/it/u=1029438222,3343725378&fm=26&gp=0.jpg'
         ]
         GroupHeadImg(document.getElementById('test1'),{
-            images:images.slice(0,1)
+            images:images.slice(0,1),
+            width:'50px',
         })
         GroupHeadImg(document.getElementById('test2'),{
-            images:images.slice(0,2)
+            images:images.slice(0,2),
+            width:'500px'
         })
         GroupHeadImg(document.getElementById('test3'),{
-            images:images.slice(0,3)
+            images:images.slice(0,3),
+            width:'100px',
+            boxStyle:{
+                backgroundColor:'red'
+            },
+            itemStyle:{
+                boxShadow:'none',
+                borderRadius:'0%'
+            }
         })
         GroupHeadImg(document.getElementById('test4'),{
-            images:images.slice(0,4)
+            images:images.slice(0,4),
+            upperLimit:2
         })
         GroupHeadImg(document.getElementById('test5'),{
             images:images.slice(0,5)
+        })
+        GroupHeadImg(document.getElementById('test6'),{
+            images:images
         })
     </script>
 </body>
