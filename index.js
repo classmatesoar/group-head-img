@@ -1,6 +1,8 @@
 !(function (e) {
     const GroupHeadImg = (dom, options = {}) => {
-        const { width = '50px', images = [] } = options,
+        const { width = '10rem', images = [] } = options,
+            widthVal = parseFloat(width),
+            unitVal = width.replace(`${widthVal}`, ''),
             length = images.length,
             addStyleAttr = (ele, options = {}) => {
                 Object.keys(options).forEach(key => {
@@ -10,7 +12,7 @@
                     }
                 })
             },
-            calcPositon = (index, total,translateScale) => {
+            calcPositon = (index, total, translateScale) => {
                 let res;
                 switch (total) {
                     case 1: {
@@ -22,10 +24,10 @@
                             reviseDeg = 0,//矫正值
                             resDeg = itemDeg * index - reviseDeg,
                             itemHd = resDeg / 180 * Math.PI,
-                            cosVal = Math.cos(itemHd) * 50 * translateScale + '%',
-                            sinVal = Math.sin(itemHd) * 50 * translateScale + '%';
+                            cosVal = Math.cos(itemHd) * translateScale + unitVal,
+                            sinVal = Math.sin(itemHd) * translateScale + unitVal;
 
-                        console.log(`${index + 1}/${total}`, resDeg)
+                        // console.log(`${index + 1}/${total}`, resDeg)
 
                         res = `translate(${cosVal},${sinVal})`
                     }
@@ -34,19 +36,22 @@
 
             },
             createEle = (arr) => {
-                let imgItemWidthScale=1,
-                imgItemWidth,//每个图片大小
-                borderWidth,
-                translateScale=1;//每个图片边框大小
-                const l = arr.length,widthVal=parseFloat(width),
-                setVal=(scale)=>{
-                    imgItemWidthScale=scale;
-                    imgItemWidth = (widthVal) / 2 * imgItemWidthScale + 'px';
-                    imgItemWidthVal = parseFloat(imgItemWidth);
-                    borderWidth = imgItemWidthVal / 20 + imgItemWidth.replace(`${imgItemWidthVal}`,'');
-                    // translateScale=imgItemWidthScale>1?imgItemWidthScale:1/imgItemWidthScale;
-                    // translateScale=imgItemWidthVal/widthVal;
-                };
+                let imgItemWidthScale = 1,
+                    imgItemWidth,//每个图片大小
+                    borderWidth,
+                    translateScale = 1;//每个图片边框大小
+                const l = arr.length,
+                    setVal = (scale,borderWidthScale=10) => {
+                        let tsfmVal = widthVal * 0.5 * 0.5;
+
+                        imgItemWidthScale = scale;
+                        imgItemWidth = (widthVal) / 2 * imgItemWidthScale + unitVal;
+                        imgItemWidthVal = parseFloat(imgItemWidth);
+                        borderWidth = imgItemWidthVal / borderWidthScale + unitVal;
+                        translateScale = (widthVal - imgItemWidthVal) /2;
+
+                        console.log(imgItemWidthVal, scale, translateScale)
+                    };
 
                 switch (l) {
                     case 1: {
@@ -55,19 +60,19 @@
                         break
                     }
                     case 2: {
-                        setVal(1.2);
+                        setVal(1.2,20);
                         break
                     }
                     case 3: {
-                        setVal(1);
+                        setVal(1.1,15);
                         break
                     }
                     case 4: {
-                        setVal(0.9);
+                        setVal(0.95,12);
                         break
                     }
                     default: {
-                        setVal(0.8);
+                        setVal(0.95,12);
                         break
                     }
                 }
@@ -84,7 +89,7 @@
                     })
                     addStyleAttr(divChild, {
                         position: 'relative',
-                        transform: calcPositon(i, l,translateScale),
+                        transform: calcPositon(i, l, translateScale),
                         width: imgItemWidth,
                         height: imgItemWidth,
                         borderRadius: '50%',
@@ -117,6 +122,7 @@
         if (!length) {
             console.warn('图片个数为0')
         } else {
+            dom.innerHTML = '';//防止多次调用
             createEle(images.slice(0, Math.min(length, 5)))
         }
 
