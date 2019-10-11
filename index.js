@@ -60,6 +60,7 @@
             createEle = (arr) => {
                 let imgItemWidthScale = 1,
                     imgItemWidth,//每个图片大小
+                    imgItemWidthVal,
                     borderWidth,
                     translateScale = 1;//每个图片边框大小
                 const l = arr.length,
