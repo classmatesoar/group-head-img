@@ -1,0 +1,15 @@
+{
+  "name": "groupheadimg",
+  "version": "1.0.0",
+  "description": "群组动态头像",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/classmateSoar/group-head-img.git"
+  },
+  "author": "cm.soar@qq.com",
+  "license": "ISC"
+}

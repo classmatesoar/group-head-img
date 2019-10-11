@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../index.js"></script>
+    <style>
+        body{
+            background-color: #333;
+        }
+        body>div{
+            margin:10px;
+            /* box-shadow: 0 0 10px #eeee; */
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+    <div id="test4"></div>
+    <div id="test5"></div>
+    <script>
+        var images=[
+            'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2604881976,4272289404&fm=26&gp=0.jpg',
+            'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3276179142,1686381254&fm=26&gp=0.jpg',
+            'http://img1.imgtn.bdimg.com/it/u=2112694706,1016932601&fm=26&gp=0.jpg',
+            'http://img1.imgtn.bdimg.com/it/u=1905111491,2361444866&fm=26&gp=0.jpg',
+            'http://img2.imgtn.bdimg.com/it/u=1029438222,3343725378&fm=26&gp=0.jpg'
+        ]
+        GroupHeadImg(document.getElementById('test1'),{
+            images:images.slice(0,1)
+        })
+        GroupHeadImg(document.getElementById('test2'),{
+            images:images.slice(0,2)
+        })
+        GroupHeadImg(document.getElementById('test3'),{
+            images:images.slice(0,3)
+        })
+        GroupHeadImg(document.getElementById('test4'),{
+            images:images.slice(0,4)
+        })
+        GroupHeadImg(document.getElementById('test5'),{
+            images:images.slice(0,5)
+        })
+    </script>
+</body>
+</html>
