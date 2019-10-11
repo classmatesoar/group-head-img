@@ -1,6 +1,6 @@
 {
   "name": "groupheadimg",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "群组动态头像",
   "main": "index.js",
   "scripts": {
