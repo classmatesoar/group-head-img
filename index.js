@@ -1,7 +1,29 @@
 !(function (e) {
     const GroupHeadImg = (dom, options = {}) => {
-        const { width = '50px', images = [], upperLimit = 10, haveAnimation = true, boxStyle = {}, itemStyle = {} } = options,
-            widthVal = parseFloat(width),
+        let { width = '50px', images = [], upperLimit = 10, haveAnimation = true, boxStyle = {}, itemStyle = {} } = options;
+        /*类型校验*/
+        if (!(images && (images instanceof Array))) {
+            console.error(`image为限制为Array类型,目前接收到的为————`,images);
+            return
+        }
+        if (typeof width !='string') {
+            console.error(`itemStyle为限制为String类型,目前接收到的为————`,width);
+            width='50px'
+        }
+        if (typeof upperLimit !='number') {
+            console.error(`itemStyle为限制为Number类型,目前接收到的为————`,upperLimit);
+            upperLimit=10
+        }
+        if (typeof boxStyle != 'object') {
+            console.error(`itemStyle为限制为Object类型,目前接收到的为————`,boxStyle);
+            boxStyle={}
+        }
+        if (typeof itemStyle != 'object') {
+            console.error(`itemStyle为限制为Object类型,目前接收到的为————`,itemStyle);
+            itemStyle={}
+        }
+
+        const widthVal = parseFloat(width),
             unitVal = width.replace(`${widthVal}`, ''),
             length = images.length,
             addStyleAttr = (ele, options = {}) => {
@@ -89,8 +111,8 @@
                         transform: 'translate(-50%,-50%)'
                     })
                     addStyleAttr(divChild, {
-                        transform: haveAnimation ? undefined :calcPositon(i, l, translateScale) ,
-                        transition: haveAnimation ?'all 1000ms':undefined,
+                        transform: haveAnimation ? undefined : calcPositon(i, l, translateScale),
+                        transition: haveAnimation ? 'all 1000ms' : undefined,
                         backgroundColor: '#fff',
                         // boxShadow: `0 0 ${borderWidth} #000`,
                         ...itemStyle,
@@ -119,7 +141,7 @@
         if (dom) {
             addStyleAttr(dom, {
                 ...boxStyle,
-                /*boxStyle不接受以下属性*/ 
+                /*boxStyle不接受以下属性*/
                 position: 'relative',
                 width,
                 height: width,
@@ -127,10 +149,12 @@
                 boxSizing: 'border-box'
             })
         } else {
-            console.warn('缺少dom对象')
+            console.error(`缺少dom对象`);
+            return;
         }
         if (!length) {
-            console.warn('图片个数为0')
+            console.error(`图片个数为0`);
+            return;
         } else {
             dom.innerHTML = '';//防止多次调用
             createEle(images.slice(0, Math.min(length, upperLimit)))
