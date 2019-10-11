@@ -9,15 +9,21 @@
 
 #### 安装教程
 
-1. xxxx
-2. xxxx
-3. xxxx
+1. npm install groupheadimg --save
+2. import 'groupheadimg' 或通过script引入
 
 #### 使用说明
 
-1. xxxx
-2. xxxx
-3. xxxx
+1. GroupHeadImg(dom:DOM节点,options:Object)
+2. dom必传项
+3. options配置项
+>options  
+>>width:String 容器宽度【带上单位px或者rem】，默认值50px
+>>images:Array 图片数组
+>>upperLimit:Number 图片接受上线，默认值10
+>>haveAnimation:Boolean 是否开启动画 默认值true
+>>boxStyle:Object 容器style属性
+>>itemStyle:Object 图片item容器属性
 
 #### 参与贡献
 
