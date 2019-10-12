@@ -12,7 +12,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             _options$images = options.images,
             images = _options$images === undefined ? [] : _options$images,
             _options$upperLimit = options.upperLimit,
-            upperLimit = _options$upperLimit === undefined ? 10 : _options$upperLimit,
+            upperLimit = _options$upperLimit === undefined ? 5 : _options$upperLimit,
             _options$haveAnimatio = options.haveAnimation,
             haveAnimation = _options$haveAnimatio === undefined ? true : _options$haveAnimatio,
             _options$boxStyle = options.boxStyle,
