@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="../lib/index.js"></script>
-    <!-- <script src="../src/index.js"></script> -->
+    <!-- <script src="../lib/index.js"></script> -->
+    <script src="../src/index.js"></script>
     <style>
         body{
             /* background-color: #333; */
@@ -48,13 +48,6 @@
         GroupHeadImg(document.getElementById('test3'),{
             images:images.slice(0,3),
             width:'100px',
-            boxStyle:{
-                backgroundColor:'red'
-            },
-            itemStyle:{
-                boxShadow:'none',
-                borderRadius:'0%'
-            }
         })
         GroupHeadImg(document.getElementById('test4'),{
             images:images.slice(0,4),
@@ -64,7 +57,9 @@
             images:images.slice(0,5)
         })
         GroupHeadImg(document.getElementById('test6'),{
-            images:images
+            images:images,
+            width:'300px',
+            upperLimit:5
         })
     </script>
 </body>

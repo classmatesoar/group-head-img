@@ -116,7 +116,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     }
                 case 3:
                     {
-                        setVal(1.1, 15);
+                        setVal(1.03, 15);
                         break;
                     }
                 case 4:
@@ -133,18 +133,18 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             var _loop = function _loop(i) {
                 var div = document.createElement('div'),
-                    divChild = document.createElement('div');
-                div.className = 'groupHeadImgItem-' + i, isLast = l - i == 1 && dealLast; //是否最后一个并且要处理
+                    divChild = document.createElement('div'),
+                    isLast = l - i == 1 && dealLast; //是否最后一个并且要处理
+                div.className = 'groupHeadImgItem-' + i;
 
-                div.appendChild(divChild);
-                dom.appendChild(div);
-                addStyleAttr(div, {
+                //设置样式对象
+                var divStyle = {
                     position: 'absolute',
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%,-50%)'
-                });
-                addStyleAttr(divChild, _extends({
+                },
+                    divChildStyle = _extends({
                     transform: haveAnimation ? undefined : calcPositon(i, l, translateScale),
                     transition: haveAnimation ? 'transform 1000ms' : undefined,
                     backgroundColor: '#fff'
@@ -160,13 +160,96 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     border: borderWidth + ' solid #ffffff',
                     boxSizing: 'border-box'
 
-                }));
+                });
+
+                div.appendChild(divChild);
+                dom.appendChild(div);
+                addStyleAttr(div, divStyle);
+                addStyleAttr(divChild, divChildStyle);
+
+                var divFirstChild = void 0; //准备放在dom最靠前的子元素的子元素
+                if (isLast) {
+                    var divLastRight = document.createElement('div'),
+                        divLastRightWrap = document.createElement('div'),
+                        groupHeadImgItem0 = dom.querySelector('.groupHeadImgItem-0'),
+                        divFirst = document.createElement('div'),
+                        //准备放在dom最靠前的子元素
+                    divLastLeft = document.createElement('div'),
+                        divLastLeftWrap = document.createElement('div');
+
+                    divFirstChild = document.createElement('div'); //准备放在dom最靠前的子元素的子元素
+
+                    //设置样式对象
+                    var divChildStyle_cover = {
+                        backgroundColor: 'rgba(0,0,0,0)',
+                        backgroundImage: 'none',
+                        border: 'none',
+                        overflow: 'hidden'
+                    },
+                        divLastRightStyle = {
+                        position: "absolute",
+                        right: '0',
+                        top: '0',
+                        width: imgItemWidth,
+                        height: imgItemWidth,
+                        borderRadius: '50%',
+                        backgroundImage: 'url(' + arr[i] + ')',
+                        backgroundPosition: 'center',
+                        backgroundSize: 'contain',
+                        backgroundRepeat: 'no-repeat',
+                        border: borderWidth + ' solid #ffffff',
+                        boxSizing: 'border-box'
+
+                    },
+                        divLastRightWrapStyle = {
+                        position: 'absolute',
+                        right: '0',
+                        top: '0',
+                        width: parseFloat(imgItemWidth) / 2 + unitVal,
+                        height: imgItemWidth,
+                        overflow: 'hidden'
+
+                    };
+
+                    addStyleAttr(divChild, divChildStyle_cover);
+
+                    divChild.appendChild(divLastRightWrap);
+                    divLastRightWrap.appendChild(divLastRight);
+
+                    addStyleAttr(divLastRightWrap, divLastRightWrapStyle);
+                    addStyleAttr(divLastRight, divLastRightStyle);
+                    dom.insertBefore(divFirst, groupHeadImgItem0);
+                    divFirst.appendChild(divFirstChild);
+                    divFirstChild.appendChild(divLastLeftWrap);
+                    divLastLeftWrap.appendChild(divLastLeft);
+
+                    addStyleAttr(divFirst, divStyle);
+
+                    addStyleAttr(divFirstChild, _extends({}, divChildStyle, divChildStyle_cover));
+
+                    addStyleAttr(divLastLeftWrap, _extends({}, divLastRightWrapStyle, {
+                        right: 'auto',
+                        left: '0'
+                    }));
+                    addStyleAttr(divLastLeft, _extends({}, divLastRightStyle, {
+                        right: 'auto',
+                        left: '0'
+                    }));
+                }
 
                 if (haveAnimation) {
                     setTimeout(function () {
-                        addStyleAttr(divChild, {
+
+                        var divChildStyleAimation = {
                             transform: calcPositon(i, l, translateScale)
-                        });
+                        };
+
+                        addStyleAttr(divChild, divChildStyleAimation);
+
+                        if (isLast && divFirstChild) {
+                            // console.log(223,divFirstChild)
+                            addStyleAttr(divFirstChild, divChildStyleAimation);
+                        }
                     }, 0);
                 }
             };
