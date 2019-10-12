@@ -17,13 +17,15 @@
 1. GroupHeadImg(dom:DOM节点,options:Object)
 2. dom必传项
 3. options配置项
->options  
->>width:String 容器宽度【带上单位px或者rem】，默认值50px
->>images:Array 图片数组
->>upperLimit:Number 图片接受上线，默认值10
->>haveAnimation:Boolean 是否开启动画 默认值true
->>boxStyle:Object 容器style属性
->>itemStyle:Object 图片item容器属性
+
+| key | 描述 | 数据类型 | 默认值 | 说明 |
+| :-: | :-: | :-: | :-: | :-: |
+| width | 容器宽度 | String | 50px | 带上单位px或rem【em不推荐】 |
+| images | 图片数组 | Array | - | 必填 |
+| upperLimit | 渲染图片数量上限 | Number | 10 | - |
+| haveAnimation | 是否开启动画 | Boolean | true | - |
+| boxStyle | 容器style属性 | Object | {} | - |
+| itemStyle | 图片item容器属性 | Object | {} | - |
 
 #### 参与贡献
 
