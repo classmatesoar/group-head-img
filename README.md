@@ -23,6 +23,7 @@
 | width | 容器宽度 | String | 50px | 带上单位px或rem【em不推荐】 |
 | images | 图片数组 | Array | - | 必填 |
 | upperLimit | 渲染图片数量上限 | Number | 5 | - |
+| dealLast | 最后一个头像是否嵌套第一个头像| Boolean | true | - |
 | haveAnimation | 是否开启动画 | Boolean | true | - |
 | boxStyle | 容器style属性 | Object | {} | - |
 | itemStyle | 图片item容器属性 | Object | {} | - |
