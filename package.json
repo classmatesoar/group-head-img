@@ -2,14 +2,21 @@
   "name": "groupheadimg",
   "version": "1.0.1",
   "description": "群组动态头像",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "complie": "babel lib/ -d src/",
+    "prepublish": "npm run complie"
   },
   "repository": {
     "type": "git",
     "url": "https://gitee.com/classmateSoar/group-head-img.git"
   },
   "author": "cm.soar@qq.com",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
 }
