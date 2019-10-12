@@ -15,6 +15,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             upperLimit = _options$upperLimit === undefined ? 5 : _options$upperLimit,
             _options$haveAnimatio = options.haveAnimation,
             haveAnimation = _options$haveAnimatio === undefined ? true : _options$haveAnimatio,
+            _options$dealLast = options.dealLast,
+            dealLast = _options$dealLast === undefined ? true : _options$dealLast,
             _options$boxStyle = options.boxStyle,
             boxStyle = _options$boxStyle === undefined ? {} : _options$boxStyle,
             _options$itemStyle = options.itemStyle,
@@ -132,7 +134,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             var _loop = function _loop(i) {
                 var div = document.createElement('div'),
                     divChild = document.createElement('div');
-                div.className = 'groupHeadImgItem-' + i;
+                div.className = 'groupHeadImgItem-' + i, isLast = l - i == 1 && dealLast; //是否最后一个并且要处理
 
                 div.appendChild(divChild);
                 dom.appendChild(div);
@@ -144,7 +146,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 });
                 addStyleAttr(divChild, _extends({
                     transform: haveAnimation ? undefined : calcPositon(i, l, translateScale),
-                    transition: haveAnimation ? 'all 1000ms' : undefined,
+                    transition: haveAnimation ? 'transform 1000ms' : undefined,
                     backgroundColor: '#fff'
                 }, itemStyle, {
                     position: 'relative',
