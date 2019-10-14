@@ -2,10 +2,10 @@
   "name": "groupheadimg",
   "version": "1.0.4",
   "description": "群组动态头像",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "complie": "babel lib/ -d src/",
+    "complie": "babel src/ -d lib/",
     "prepare": "npm run complie"
   },
   "repository": {
