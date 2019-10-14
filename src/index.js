@@ -1,6 +1,37 @@
 !(function (e) {
+    /*babel未编译Object.keys,补丁*/
+    if(!(Object.keys&&typeof Object.keys === 'function')){
+        Object.keys=(obj)=>{
+            let keysArr=[];
+            for(let i in obj){
+                keysArr.push(i)
+            }
+            // console.log(9,keysArr)
+            return keysArr
+        }
+    }
+
+    /*兼容ie8及下forEach补丁，其实没用，本插件主要依赖于trasnform和borderRadius，ie8及下不支持*/
+    if(!(Array.prototype.forEach)){
+        Array.prototype.forEach=function(fn){
+            if(typeof fn ==='function'){
+                this.valueArr=[];
+                try {
+                    for(let i in this){
+                        this.valueArr.push(this[i])
+                        fn(this[i],i,this.valueArr)
+                    }
+                } catch (error) {
+                    console.error(error.message)
+                }
+            }else{
+                console.error(`forEach传入的参数不为funcion`)
+            }
+        }
+    }
+
     const GroupHeadImg = (dom, options = {}) => {
-        let { width = '50px', images = [], upperLimit = 5, haveAnimation = true, dealLast = true, boxStyle = {}, itemStyle = {} } = options;
+        let { width = '50px', images = [], upperLimit = 5, haveAnimation = false, dealLast = true, boxStyle = {}, itemStyle = {} } = options;
         /*类型校验*/
         if (!(images && (images instanceof Array))) {
             console.error(`image为限制为Array类型,目前接收到的为————`, images);
@@ -26,13 +57,44 @@
         const widthVal = parseFloat(width),
             unitVal = width.replace(`${widthVal}`, ''),
             length = images.length,
+            upFistWord = (word='')=>{
+                let res=`${word}`;
+                if(word){
+                    let firstWord=word.substr(0,1);
+                    // console.log(44,word)
+                    res=word.replace(firstWord,firstWord.toUpperCase())
+                }
+                return res
+            },
             addStyleAttr = (ele, options = {}) => {
                 Object.keys(options).forEach(key => {
                     const val = options[key];
                     if (val) {
                         ele.style[key] = val;
+
+                        switch(key){
+                            case 'transform':{
+                                ele.style[`webkit${upFistWord(key)}`]=val;
+                                ele.style[`ms${upFistWord(key)}`]=val;
+                                break
+                            }
+                            case 'transition':{
+                                ele.style[`webkit${upFistWord(key)}`]=val;
+                                break
+                            }
+                            case 'boxSizing:':{
+                                ele.style[`webkit${upFistWord(key)}`]=val;
+                                ele.style[`moz${upFistWord(key)}`]=val;
+                                break;
+                            }
+                        }
+
+                        // console.log(72,`moz${upFistWord(key)}`)
                     }
+
                 })
+
+                // console.log(77,ele.style)
             },
             calcPositon = (index, total, translateScale) => {
                 let res;
@@ -93,7 +155,7 @@
                         break
                     }
                     default: {
-                        setVal(0.98, 12);
+                        setVal(0.95, 12);
                         break
                     }
                 }
@@ -101,7 +163,7 @@
                 for (let i = 0; i < l; i++) {
                     const div = document.createElement('div'),
                         divChild = document.createElement('div'),
-                        isLast = (l - i == 1) && dealLast;//是否最后一个并且要处理
+                        isLast = (l - i == 1) &&l>=3&& dealLast;//是否最后一个并且要处理
                     div.className = `groupHeadImgItem-${i}`;
 
                     //设置样式对象
@@ -135,15 +197,17 @@
                     addStyleAttr(div, divStyle)
                     addStyleAttr(divChild, divChildStyle);
 
-                    let divFirstChild;//准备放在dom最靠前的子元素的子元素
+                    let divFirstChild,//准备放在dom最靠前的子元素的子元素
+                        divLastRightWrap,//最后图片item右半边容器
+                        divLastLeftWrap;//最后图片item左半边容器
                     if (isLast) {
                         const divLastRight = document.createElement('div'),
-                            divLastRightWrap = document.createElement('div'),
-                            groupHeadImgItem0 = dom.querySelector('.groupHeadImgItem-0'),
-                            divFirst = document.createElement('div'),//准备放在dom最靠前的子元素
                             divLastLeft = document.createElement('div'),
-                            divLastLeftWrap = document.createElement('div');
+                            groupHeadImgItem0 = dom.querySelector('.groupHeadImgItem-0'),
+                            divFirst = document.createElement('div');//准备放在dom最靠前的子元素
 
+                        divLastRightWrap = document.createElement('div');
+                        divLastLeftWrap = document.createElement('div');
                         divFirstChild = document.createElement('div');//准备放在dom最靠前的子元素的子元素
 
                         //设置样式对象
@@ -173,7 +237,8 @@
                                 position: 'absolute',
                                 right: '0',
                                 top: '0',
-                                width: parseFloat(imgItemWidth) / 2 + unitVal,
+                                // transition: haveAnimation ? 'width 1000ms' : undefined,
+                                width: haveAnimation ? imgItemWidth : (Math.ceil(parseFloat(imgItemWidth) / 2) + unitVal),
                                 height: imgItemWidth,
                                 overflow: 'hidden',
 
@@ -218,8 +283,19 @@
                             addStyleAttr(divChild, divChildStyleAimation)
 
                             if (isLast && divFirstChild) {
+                                let divLastWrapStyle = {
+                                    width: Math.ceil(parseFloat(imgItemWidth) / 2) + unitVal,
+                                }
                                 // console.log(223,divFirstChild)
                                 addStyleAttr(divFirstChild, divChildStyleAimation)
+
+                                setTimeout(() => {
+
+                                    addStyleAttr(divLastLeftWrap, divLastWrapStyle)
+
+                                    addStyleAttr(divLastRightWrap, divLastWrapStyle)
+
+                                }, 1000);
                             }
 
                         }, 0)

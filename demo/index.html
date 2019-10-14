@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <!-- <script src="../lib/index.js"></script> -->
-    <script src="../src/index.js"></script>
+    <!-- 编译之后的版本 -->
+    <script src="../lib/index.js"></script>
+    
+    <!-- 开发版本 -->
+    <!-- <script src="../src/index.js"></script> -->
     <style>
         body{
             /* background-color: #333; */
@@ -29,9 +32,12 @@
         var images=[
             'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2604881976,4272289404&fm=26&gp=0.jpg',
             'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3276179142,1686381254&fm=26&gp=0.jpg',
-            'http://img1.imgtn.bdimg.com/it/u=2112694706,1016932601&fm=26&gp=0.jpg',
-            'http://img1.imgtn.bdimg.com/it/u=1905111491,2361444866&fm=26&gp=0.jpg',
+            // 'http://img1.imgtn.bdimg.com/it/u=2112694706,1016932601&fm=26&gp=0.jpg',
+            // 'http://img1.imgtn.bdimg.com/it/u=1905111491,2361444866&fm=26&gp=0.jpg',
             'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2604881976,4272289404&fm=26&gp=0.jpg',
+            'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3276179142,1686381254&fm=26&gp=0.jpg',
+            'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3276179142,1686381254&fm=26&gp=0.jpg',
+            'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3276179142,1686381254&fm=26&gp=0.jpg',
             'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3276179142,1686381254&fm=26&gp=0.jpg',
             'http://img1.imgtn.bdimg.com/it/u=2112694706,1016932601&fm=26&gp=0.jpg',
             'http://img1.imgtn.bdimg.com/it/u=1905111491,2361444866&fm=26&gp=0.jpg',
@@ -43,15 +49,15 @@
         })
         GroupHeadImg(document.getElementById('test2'),{
             images:images.slice(0,2),
-            width:'500px'
+            // width:'500px'
         })
         GroupHeadImg(document.getElementById('test3'),{
             images:images.slice(0,3),
-            width:'100px',
+            // width:'100px',
         })
         GroupHeadImg(document.getElementById('test4'),{
             images:images.slice(0,4),
-            upperLimit:2
+            // upperLimit:2
         })
         GroupHeadImg(document.getElementById('test5'),{
             images:images.slice(0,5)
