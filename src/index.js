@@ -226,7 +226,7 @@
                                 borderRadius: '50%',
                                 backgroundImage: `url(${arr[i]})`,
                                 backgroundPosition: 'center',
-                                backgroundSize: 'contain',
+                                backgroundSize: 'cover',
                                 backgroundRepeat: 'no-repeat',
                                 border: `${borderWidth} solid #ffffff`,
                                 boxSizing: 'border-box',
