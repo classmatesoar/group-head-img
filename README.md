@@ -3,6 +3,8 @@
 #### 介绍
 群组动态头像
 
+![image Text](./image/havealook.png)
+
 ### 兼容
 现代浏览器 及 ie9+
 
