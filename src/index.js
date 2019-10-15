@@ -31,7 +31,7 @@
     }
 
     const GroupHeadImg = (dom, options = {}) => {
-        let { width = '50px', images = [], upperLimit = 5, haveAnimation = false, dealLast = true, boxStyle = {}, itemStyle = {} } = options;
+        let { width = '200px', images = [], upperLimit = 5, haveAnimation = false, dealLast = true, boxStyle = {}, itemStyle = {} } = options;
         /*类型校验*/
         if (!(images && (images instanceof Array))) {
             console.error(`image为限制为Array类型,目前接收到的为————`, images);
