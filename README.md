@@ -32,6 +32,7 @@
 | haveAnimation | 是否开启动画 | Boolean | true | - |
 | boxStyle | 容器style属性 | Object | {} | - |
 | itemStyle | 图片item容器属性 | Object | {} | - |
+| borderImportant | border-width是否加important【兼容公司项目】 | Boolean | true | - |
 
 #### 参与贡献
 
